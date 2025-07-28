@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #date-time-container{
+            margin-left: 600px;
+        }
+        .user-position{
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="admin-page-header">
+    <h1 id="admin-heading">Schedule Sync</h1>
+    <div id="date-time-container">
+  <div id="today-label">Today</div>
+  <div id="date"></div>
+  <div id="time"></div>
+</div>
+        <div id="userInfo">
+            <div id="admin-name-role">
+                <div class="user-name"><%= user.name %></div>
+                <div class="user-position">(<%= user.role %>)</div>
+            </div>
+             <% if (user.profilePic) { %>
+            <img src="/uploads/<%= user.profilePic %>" alt="profilePic" id="profile-img">
+        <% } else { %>
+            <img src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-transparent-600nw-2534623311.jpg" alt="Default Profile" id="profile-img">
+        <% } %>
+            <!-- <img src="" alt="profilePic" id="profile-img"> -->
+            <div id="profileDropdown" class="dropdown" style="display: none;">
+                <div class="dropdown-item" id="settingsBtn">Settings</div>
+                <div class="dropdown-item">Logout</div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+js-done
+nodejs- done
+localstorage-done
+express-done
+session-done
+multer-done
+ejs
+
+
+MongoDB
+structure
+insertone,deleteone,updateone,countdocuments,find,use dbname
+queries of mongo db
+gte
+get 
+and
+or
+element match
+mongo operators website
+
+change backend use promises (callback) and dont use sync
+
+
+git/github
+git add .  sari files ko push krne ke liye(harmful)
+kuch kam kia to 
+chore: tbn added
+kuch fix kia to
+fix:header
+
+git remote add origin "link"- cloud se related(origin commands)
+git push origin main/master
+
+
+kisi or ka code apne system pr chlane k eliye
+git clone "repo ka url"
+git remote status
+kisi or ke code me jo changes huye usko apne system me reflect krane ke liye
+git pull origin main
+difference bw git fetch and git pull
+
+jo hm push nhi kr skte git pe jse ki node module ya koi secret files
+unke naam hm gitignore folder me rkh denge

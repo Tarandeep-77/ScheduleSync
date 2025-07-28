@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/admin.css">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+
+<%- include("partials/header", {user})%>
+
+  <div id="dashboard-container">
+    <div id="sidebar">
+            <ul class="sidebar-menu">
+                <li>Dashboard</li>
+                <li id="calendar-menu-btn">Calendar</li>
+                <li id="approve-leave-btn">Approve Leave</li>
+                <li>Inbox</li>
+            </ul>
+            <div class="sidebar-current-view"><p>Current view</p>
+                <button class="current-view-btn">Meeting</button>
+                <button class="current-view-btn">Scheduling</button>
+            </div>
+            <button class="upcoming-event-btn">Upcoming Event</button>
+        </div>
+
+    <div id="outer-container">
+    <!-- <button id="timetable-form-btn">Add Time Table Details</button> -->
+
+    <div id="schedule-form" style="display: none;">
+    <form action="" id="timetable-form">
+         <h2 id="timetable-heading">Add Time Table Details</h2>
+
+
+         <label for="day">Day</label><br>
+         <select name="days" id="input-days" class="input">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+         </select><br>
+
+         <label for="date">Date</label><br>
+         <input type="date" id="input-date" class="input"><br>
+
+        <div id="subject-room">
+        <div>
+        <label for="subjectname">Subject Name</label><br>
+        <input type="text" class="input" id="subject-name"><br>
+        </div>
+        <div>
+        <label for="roomno">Room No</label><br>
+        <input type="number" class="input" id="room-no"><br>
+        </div>
+        </div>
+
+         <label for="lecturenumber" >Lecture Number</label><br>
+        <select name="" id="lectureno-options" class="input">
+            <option value="Lecture1">Lecture 1</option>
+            <option value="Lecture1">Lecture 2</option>
+            <option value="Lecture1">Lecture 3</option>
+            <option value="Lecture1">Lecture 4</option>
+            <option value="Lecture1">Lecture 5</option>
+            <option value="Lecture1">Lecture 6</option>
+            <option value="Lecture1">Lecture 7</option>
+            <option value="Lecture1">Lecture 8</option>
+        </select><br>
+
+        <div id="time">
+            <div>
+            <label for="start-time">Start Time</label><br>
+            <input type="time" class="input" id="start-time">
+        </div>
+        <div>
+            <label for="end-time">End Time</label><br>
+            <input type="time" class="input" id="end-time">
+         </div>
+        </div><br>
+
+        <div id="form-btns">
+        <button id="cancel-btn">Cancel</button>
+        <button id="save-btn">Save</button>
+        </div>
+    </form>
+    </div>
+
+    <div id="schedule">
+        <div class="timetable-top-controls">
+        <select name="" id="teacher-email">
+            <!-- <option value="">teacher1@gmail.com</option> -->
+        </select>
+         <button id="timetable-form-btn">Add Time Table Details</button>
+         </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Days/Time</th>
+                <th>Lecture 1 <br>
+                9:00-10:00
+                </th>
+                <th>Lecture 2 <br>
+                10:00-11:00</th>
+                <th>Lecture 3 <br>
+                11:00-12:00
+                </th>
+                <th>Lecture 4 <br>
+                12:00-1:00</th>
+                <th>Lecture 5 <br>
+                1:00-2:00</th>
+                <th>Lecture 6 <br>
+                2:00-3:00</th>
+                <th>Lecture 7<br>
+                3:00-4:00</th>
+                <th>Lecture 8 <br>
+                4:00-5:00</th>
+             </tr>
+             </thead>
+             <tbody>
+                <tr>
+                    <td>Monday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                     <td>Tuesday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                     <td>Wednesday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                 <tr>
+                    <td>Thursday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                 <tr>
+                    <td>Friday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                 <tr>
+                    <td>Saturday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                
+                </tbody>
+        </table>
+    </div>
+
+    <div id="calendar-box" style="display: none;">
+  <div id="calendar"></div>
+  <button id="back-to-timetable-btn">Back to Timetable</button>
+</div>
+<div id="adjustment-section" style="display: none;">
+  <h2>Pending Adjustment Requests</h2>
+  <div id="requests-list"></div>
+</div>
+                <!-- <h3>Available Teachers</h3> -->
+                <div id="available-teachers"></div>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="./js/admin.js"></script>
+</body>
+</html>

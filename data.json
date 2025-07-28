@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Jashan",
+    "email": "jashan123@gmail.com",
+    "password": "Jashan123@",
+    "role": "teacher",
+    "lectures": [
+      {
+        "subject": "dsa",
+        "day": "Monday",
+        "date": "2025-07-14",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "room": "1"
+      },
+      {
+        "subject": "qas",
+        "day": "Wednesday",
+        "date": "2025-07-16",
+        "startTime": "15:00",
+        "endTime": "16:00",
+        "room": "2"
+      },
+      {
+        "subject": "Express js",
+        "day": "Wednesday",
+        "date": "2025-07-16",
+        "startTime": "16:00",
+        "endTime": "17:00",
+        "room": "22"
+      },
+      {
+        "subject": "dsa",
+        "day": "Tuesday",
+        "date": "2025-07-29",
+        "startTime": "10:00",
+        "endTime": "11:00",
+        "room": "7"
+      }
+    ]
+  },
+  {
+    "name": "Taran",
+    "email": "taran123@gmail.com",
+    "password": "Taran123@",
+    "role": "admin",
+    "lectures": []
+  },
+  {
+    "name": "mentor1",
+    "email": "mentor123@gmail.com",
+    "password": "Mentor123@",
+    "role": "teacher",
+    "lectures": [
+      {
+        "subject": "Dsa",
+        "day": "Monday",
+        "date": "2025-07-14",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "room": "6"
+      },
+      {
+        "subject": "web",
+        "day": "Monday",
+        "date": "2025-07-14",
+        "startTime": "10:00",
+        "endTime": "11:00",
+        "room": "6"
+      },
+      {
+        "subject": "C++",
+        "day": "Thursday",
+        "date": "2025-07-17",
+        "startTime": "11:00",
+        "endTime": "00:00",
+        "room": "5"
+      }
+    ]
+  },
+  {
+    "name": "testmentor",
+    "email": "testmentor123@gmail.com",
+    "password": "Test123@",
+    "role": "teacher",
+    "lectures": [
+      {
+        "subject": "dsa",
+        "day": "Friday",
+        "date": "2025-07-18",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "room": "6"
+      },
+      {
+        "subject": "Web",
+        "day": "Thursday",
+        "date": "2025-07-24",
+        "startTime": "10:00",
+        "endTime": "11:00",
+        "room": "14"
+      }
+    ]
+  },
+  {
+    "name": "upload",
+    "email": "upload123@gmail.com",
+    "password": "Upload123@",
+    "role": "teacher",
+    "lectures": [
+      {
+        "subject": "C++",
+        "day": "Friday",
+        "date": "2025-07-25",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "room": "7"
+      }
+    ],
+    "profilePic": "profilePic-1752791883176-744554873.jpg"
+  },
+  {
+    "name": "newMentor",
+    "email": "newmentor1@gmail.com",
+    "password": "Newmentor123@",
+    "role": "teacher",
+    "lectures": [
+      {
+        "subject": "dsa",
+        "day": "Thursday",
+        "date": "2025-07-24",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "room": "6"
+      },
+      {
+        "subject": "dsa",
+        "day": "Monday",
+        "date": "2025-07-28",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "room": "5"
+      }
+    ],
+    "profilePic": "profilePic-1752792796436-825449115.jpeg"
+  },
+  {
+    "name": "Tejinder",
+    "email": "tejinder123@gmail.com",
+    "password": "Tejinder123@",
+    "role": "teacher",
+    "lectures": [
+      {
+        "subject": "web",
+        "day": "Tuesday",
+        "date": "2025-07-15",
+        "startTime": "09:00",
+        "endTime": "22:00",
+        "room": "22"
+      }
+    ],
+    "profilePic": "profilePic-1752794841587-810053371.jpg"
+  },
+  {
+    "name": "newuser",
+    "email": "newuser123@gmail.com",
+    "password": "Newuser123@",
+    "role": "teacher",
+    "lectures": [],
+    "profilePic": null
+  }
+]

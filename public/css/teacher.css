@@ -1,0 +1,245 @@
+body {
+  background: linear-gradient(to right, #f1f9f1, #e6e6ff);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#outer-container{
+  padding: 20px 400px 20px 200px;
+}
+
+#admin-page-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 1280px;
+  background-color: indigo;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  padding: 4px 0px 4px 0px;
+  font-weight: 800;
+}
+#admin-heading {
+  margin: 0;
+  font-size: 24px;
+  color: white;
+}
+#userInfo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+    
+.user-name {
+  font-weight: bold;
+  font-size: 13px;
+  margin-left: 200px;
+}
+    
+.user-position {
+  font-style: italic;
+  font-size: 14px;
+  margin-left: 54px;
+}
+    
+#profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#timetable-heading{
+    color: indigo;
+}
+table {
+  width: 1000px;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+#dashboard-container {
+  display: flex;
+}
+
+#sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  height: 500px;
+  padding: 20px 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.sidebar-menu li:hover{
+  background-color: #e0e0e0;
+}
+
+.sidebar-current-view {
+  margin-top: 30px;
+}
+
+.current-view-btn {
+  display: block;
+  width: 100%;
+  padding: 30px;
+  margin-bottom: 10px;
+  background-color: #e6e6ff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.upcoming-event-btn {
+  margin-top: 20px;
+  background-color: indigo;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#outer-container {
+  padding: 20px 40px;
+}
+
+#calendar-box{
+  display: block;
+  padding: 20px;
+  text-align: center;
+}
+
+#calendar {
+  width: 650px;
+  height: 400px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#back-to-timetable-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: indigo;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#upper-divs{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.upper-div{
+  height: 70px;
+  width: 335px;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 10px;
+   box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.upper-div p{
+   margin-left: 30px;
+   margin-bottom: 1px;
+   font-size: 15px;
+}
+.below-divs{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.below-div{
+  height: 80px;
+  width: 1010px;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid white;
+   padding: 10px 10px 20px 10px;
+}
+.below-div-p{
+  font-weight: 700;
+}
+.inner-div{
+  height: 20px;
+  width: 990px;
+  border: 1px solid #ccc;
+ padding: 10px;
+}
+
+#show-teacher-timetable{
+  height: 30px;
+  width: 200px;
+  border-radius: 7px;
+  border: none;
+  background-color: indigo;
+  color: white;
+  margin-top: 13px;
+  padding: 6px;
+}
+#date-time-container{
+  /* margin-left: 690px; */
+  color: white;
+  font-size: 10px; 
+  margin-top: 4px;
+}
+#apply-leave-form{
+  height: 330px;
+  width:400px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-left: 200px;
+}
+#reason-input{
+  height: 140px;
+}
+#req-leave-btn{
+  height: 40px;
+  width: 390px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  background-color: indigo;
+  color: white;
+  font-size: 15px;
+}
+.req-form-inputs{
+  height: 30px;
+  width: 390px;
+  margin-bottom: 20px;
+}
+#req-leave-heading{
+  text-align: center;
+  color: indigo;
+}

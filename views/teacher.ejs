@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/teacher.css">
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+        <!-- <h2 id="welcome-message"></h2> -->
+ <%- include("partials/header",{user})%>
+
+    <div id="dashboard-container">
+
+         <div id="sidebar">
+            <ul class="sidebar-menu">
+                <li>Dashboard</li>
+                <li id="calendar-menu-btn">Calendar</li>
+                <li id="apply-leave-menu-btn">Apply Leave</li>
+                <li>Inbox</li>
+            </ul>
+            <div class="sidebar-current-view"><p>Current view</p>
+                <button class="current-view-btn">Meeting</button>
+                <button class="current-view-btn">Scheduling</button>
+            </div>
+            <button class="upcoming-event-btn">Upcoming Event</button>
+      </div>
+
+     <div id="outer-container">
+
+        <div id="summary-sections">
+        <div id="upper-divs">
+            <div class="upper-div">
+                <p id="total-lectures">0</p>
+                <p>Total Lectures</p>
+            </div>
+            <div class="upper-div">
+                <p id="total-left">0</p>
+                <p>Total Left</p>
+            </div>
+            <div class="upper-div">
+                <p id="total-done">0</p>
+                <p>Total Done</p>
+            </div>
+        </div>
+        <div class="below-divs">
+            <div class="below-div">
+                <p class="below-div-p">Upcoming Adjustments</p>
+                <div class="inner-div">No adjustment schedule yet.</div>
+            </div>
+            <div class="below-div">
+                <p class="below-div-p">Today's Schedules</p>
+                 <div class="inner-div">Upcoming soon...</div>
+            </div>
+            <div class="below-div">
+                <p class="below-div-p">Adjustment Proposals</p>
+                <div class="inner-div">Not schedules yet.</div>
+            </div>
+        </div>
+        <button id="show-teacher-timetable">Show Time Table</button>
+        </div>
+        <div id="schedule" style="display: none;">
+      <table>
+            <thead>
+            <tr>
+                <th>Days/Time</th>
+                <th>Lecture 1 <br>
+                9:00-10:00
+                </th>
+                <th>Lecture 2 <br>
+                10:00-11:00</th>
+                <th>Lecture 3 <br>
+                11:00-12:00
+                </th>
+                <th>Lecture 4 <br>
+                12:00-1:00</th>
+                <th>Lecture 5 <br>
+                1:00-2:00</th>
+                <th>Lecture 6 <br>
+                2:00-3:00</th>
+                <th>Lecture 7<br>
+                3:00-4:00</th>
+                <th>Lecture 8 <br>
+                4:00-5:00</th>
+             </tr>
+             </thead>
+             <tbody>
+                <tr>
+                    <td>Monday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                     <td>Tuesday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                     <td>Wednesday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                 <tr>
+                    <td>Thursday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                 <tr>
+                    <td>Friday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                 <tr>
+                    <td>Saturday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                 </tr>
+                
+                </tbody>
+        </table>
+    </div>
+
+         <div id="calendar-box" style="display: none;">
+        <div id="calendar"></div>
+        <button id="back-to-timetable-btn">Back to Timetable</button>
+        </div>
+
+        <div id="apply-leave-form" style="display: none;">
+            <form action="">
+                <h2 id="req-leave-heading">Request for leave</h2>
+                <input type="date" id="date-input" class="req-form-inputs">
+                <input type="text" id="reason-input" placeholder="Reason for leave" class="req-form-inputs">
+                <button id="req-leave-btn">Request Leave</button>
+            </form>
+        </div>
+
+        </div>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+        <script src="./js/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+body {
+  background: linear-gradient(to right, #f1f9f1, #e6e6ff);
+  font-family: Arial, sans-serif;
+}
+#outer-container{
+    display: flex;
+    justify-content:center;
+    padding-top: 70px;
+}
+
+#form-container{
+    height: 430px;
+    width: 300px;
+    border: 1px solid #ccc;
+    background-color: black;
+    border-radius: 10px;
+    padding: 25px;
+}
+#login-text{
+     /* color: #155c15; */
+    text-align: center;
+    color:indigo;
+}
+.input-group{
+  display: block;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.input-icon{
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 3px;
+  color: gray;
+}
+
+input{
+  width: 250px;
+  height: 40px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+}
+
+#input-role{
+  height: 40px;
+  width: 300px;
+  border-radius: 8px;
+}
+#forgot-passwd-text a{
+    font-size: 14px;
+    color: indigo;
+    list-style: none;
+}
+#login-btn{
+    height: 40px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: indigo;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+}
+#login-btn:hover {
+  background-color: rgb(60, 2, 101);
+}
+
+#or-text {
+  text-align: center;
+  color: gray;
+  font-size: 14px;
+}
+
+#google-btn {
+  width: 300px;
+  height: 40px;
+  color: black;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#signup-link{
+    text-align: center;
+    color: white;
+}
+#signup-link a{
+    color: indigo;
+}

@@ -1,0 +1,368 @@
+body {
+  background: linear-gradient(to right, #f1f9f1, #e6e6ff);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#outer-container{
+  padding: 20px 400px 20px 200px;
+}
+
+#admin-page-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 1280px;
+  background-color: indigo;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  padding: 4px 0px 4px 0px;
+  font-weight: 800;
+}
+#admin-heading {
+  margin: 0;
+  font-size: 24px;
+  color: white;
+}
+#userInfo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+    
+.user-name {
+  font-weight: bold;
+  font-size: 13px;
+  margin-left: 200px;
+}
+    
+.user-position {
+  font-style: italic;
+  font-size: 14px;
+  margin-left: 40px;
+}
+    
+#profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#timetable-heading{
+    color: indigo;
+}
+.timetable-top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  margin: 20px auto;
+}
+#timetable-form-btn{
+    height: 37px;
+    width: 220px;
+    background-color: indigo;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    /* margin-left: 600px; */
+    font-size: 16px;
+}
+#timetable-form{
+    height: 460px;
+    width: 430px;
+    background-color: white;
+    margin-top: 2px;
+    padding: 10px 20px 20px 20px;
+    border-radius: 10px;
+    justify-content: center;
+    margin-left: 230px;
+}
+.input{
+  height: 37px;
+  width: 420px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+#subject-room{
+    display: flex;
+    gap: 20px;
+}
+#subject-name, #room-no{
+    height: 37px; width: 200px;
+}
+
+#time{
+    display: flex;
+    gap: 20px;
+}
+#time input {
+  width: 200px;
+}
+#start-time, #end-time{
+    height: 37px; width: 200px;
+}
+
+#form-submit-btn{
+    height: 40px;
+    width: 160px;
+    border-radius: 9px;
+    background-color: indigo;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+#cancel-btn,#save-btn{
+    height: 40px;
+    width: 90px;
+    border: none;
+    border-radius: 4px;
+}
+#cancel-btn{
+    background-color: #ccc;
+}
+#save-btn{
+    background-color: indigo;
+    color: white;
+}
+#form-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3px;
+}
+#teacher-email{
+    height: 37px;
+    width: 210px;
+    font-size: 16px;
+}
+
+table {
+  width: 1000px;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+#dashboard-container {
+  display: flex;
+}
+
+#sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  height: 500px;
+  padding: 20px 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.sidebar-menu li:hover{
+  background-color: #e0e0e0;
+}
+
+.sidebar-current-view {
+  margin-top: 20px;
+}
+.sidebar-current-view p{
+  font-size: 14px;
+}
+.current-view-btn {
+  display: block;
+  width: 100%;
+  padding: 30px;
+  margin-bottom: 10px;
+  background-color: #e6e6ff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.upcoming-event-btn {
+  margin-top: 20px;
+  background-color: indigo;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#outer-container {
+  padding: 20px 40px;
+}
+
+#calendar-box{
+  display: block;
+  padding: 20px;
+  text-align: center;
+}
+
+#calendar {
+  width: 650px;
+  height: 400px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#back-to-timetable-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: indigo;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#date-time-container{
+  /* margin-left: 690px; */
+  color: white;
+  font-size: 10px; 
+  margin-top: 4px;
+}
+#profile-img:hover #profileDropdown {
+  display: block;
+}
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-width: 120px;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+#userInfo{
+  position: relative;
+}
+.adjustment-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.adjustment-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  /* border-left: 6px solid #4b0082; */
+  border-radius: 8px;
+  padding: 20px;
+  width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#adjustment-section h2{
+  color: indigo;
+}
+.adjustment-card p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.resolve-btn,
+.assign-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.resolve-btn {
+  background-color: indigo;
+  color: white;
+}
+
+.assign-btn {
+  background-color: indigo;
+  color: white;
+}
+
+.teacher-container {
+  padding: 10px;
+}
+
+.teacher-container h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 20px;
+}
+
+.teacher-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.teacher-email {
+  font-size: 16px;
+  color: #555;
+}
+
+.send-request-btn {
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send-request-btn:hover {
+  background-color: #007acc;
+}
