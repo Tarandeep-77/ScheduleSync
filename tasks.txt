@@ -1,10 +1,14 @@
 js-done
 nodejs- done
 localstorage-done
+sessionstorage
 express-done
 session-done
 multer-done
 ejs
+MongoDB
+mongoose
+git/github
 
 
 MongoDB
@@ -20,11 +24,10 @@ mongo operators website
 
 change backend use promises (callback) and dont use sync
 
-
 git/github
 git add .  sari files ko push krne ke liye(harmful)
 kuch kam kia to 
-chore: tbn added
+chore: btn added
 kuch fix kia to
 fix:header
 
@@ -32,7 +35,7 @@ git remote add origin "link"- cloud se related(origin commands)
 git push origin main/master
 
 
-kisi or ka code apne system pr chlane k eliye
+kisi or ka code apne system pr chlane ke liye
 git clone "repo ka url"
 git remote status
 kisi or ke code me jo changes huye usko apne system me reflect krane ke liye
@@ -41,3 +44,13 @@ difference bw git fetch and git pull
 
 jo hm push nhi kr skte git pe jse ki node module ya koi secret files
 unke naam hm gitignore folder me rkh denge
+
+pending- JWT 
+
+To do : fix session,lecture schema fix,logout btn,frontend update,teacher ke pass
+show honi chaiye usne kon konsi leave request sent ki hai
+
+types of middleware-custom(server and route based),builtin,error handling, third party
+lectures ki id store krvani hai 
+frontend se role field remove backend pr check kro bs
+populate method -mongodb

@@ -1,15 +1,12 @@
-let timetable_form_btn = document.getElementById("timetable-form-btn");
 let schedule_form_div = document.getElementById("schedule-form");
 let schedule_div = document.getElementById("schedule");
+let inbox_menu_btn =document.getElementById("inbox-menu-btn");
+let dashboard_menu_btn = document.getElementById("dashboard-menu-btn")
+let summary_sections = document.getElementById("summary-sections");
+let inboxSection = document.getElementById("inbox-section")
 
 const loggedUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
-// console.log("Logged User:", loggedUser);
-// if (loggedUser && loggedUser.profilePic) {
-//   document.getElementById("profile-img").src = `/uploads/${loggedUser.profilePic}`;
-// }else{
-//   const defaultPic = "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-transparent-600nw-2534623311.jpg";
-// document.getElementById("profile-img").src = defaultPic;
-// }
+
 if (!loggedUser|| loggedUser.role !== "teacher") {
   alert("Access denied!");
   window.location.href = "/login";
@@ -29,19 +26,30 @@ function fillLectureInTimetable(lecture){
     "13": 5, "14": 6, "15": 7, "16": 8
   };
 
-  const row = Array.from(rows).find(r => r.cells[0].innerText === lecture.day);
+  let lectureDay = lecture.day;
+  if (!lectureDay && lecture.date) {
+    const dateObj = new Date(lecture.date);
+    lectureDay = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+  }
+  if (!lectureDay) return;
+
+  const row = Array.from(rows).find(r => 
+    r.cells[0] && r.cells[0].innerText.trim().toLowerCase() === lectureDay.trim().toLowerCase()
+  );
   if (!row) return;
 
-  const hour = lecture.startTime.slice(0, 2);
+  let hour = lecture.startTime.slice(0,2);
+  if (hour.length === 1) hour = "0" + hour;
   const colIndex = timeSlot[hour];
+  if (!colIndex) return;
 
-  if (colIndex) {
-    row.cells[colIndex].innerHTML = `
-      <strong>${lecture.subject}</strong><br>
-      Room: ${lecture.room}
-    `;
-  }
+  row.cells[colIndex].innerHTML = `
+    <strong>${lecture.subject}</strong><br>
+    Room: ${lecture.room}
+  `;
 }
+
+
 function renderTimetable(teacherEmail) {
   console.log("Rendering timetable for:", teacherEmail);
 
@@ -91,9 +99,8 @@ function updateLectureSummary(currentUserEmail) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // document.getElementById("admin-name-role").textContent = `${currentUser.name} (${currentUser.role})`;
 
-  console.log("Fetching lectures for:", currentUser.email); 
+  // console.log("Fetching lectures for:", currentUser.email); 
 
   renderTimetable(currentUser.email);
   updateLectureSummary(currentUser.email);
@@ -105,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.getElementById("show-teacher-timetable").addEventListener("click", () => {
-  document.getElementById("summary-sections").style.display = "none";
+  summary_sections.style.display = "none";
   document.getElementById("schedule").style.display = "block";
 });
 
@@ -116,8 +123,10 @@ let calendarInitialized = false;
 
 calendarMenuBtn.addEventListener("click", () => {
   schedule_div.style.display = "none";
+  inboxSection.style.display = "none";
+  request_leave_form.style.display="none";
   calendarBox.style.display = "block";
-  document.getElementById("summary-sections").style.display = "none";
+  summary_sections.style.display = "none";
 
   if (!calendarInitialized) {
     const calendarEle = document.getElementById("calendar");
@@ -152,8 +161,8 @@ calendarMenuBtn.addEventListener("click", () => {
 
 backToTimetableBtn.addEventListener("click", () => {
   calendarBox.style.display = "none";
-  schedule_div.style.display = "block";
-  timetable_form_btn.style.display = "block";
+    summary_sections.style.display="none";
+     document.getElementById("schedule").style.display = "block";
 });
 
 function getAllLecturesAsEvents() {
@@ -216,8 +225,9 @@ let request_leave_form = document.getElementById("apply-leave-form");
 apply_leave_btn.addEventListener("click",()=>{
   request_leave_form.style.display="block"
    schedule_div.style.display = "none";
-     document.getElementById("summary-sections").style.display = "none";
+     summary_sections.style.display = "none";
      calendarBox.style.display = "none";
+     inboxSection.style.display = "none";
 })
 
 document.getElementById("req-leave-btn").addEventListener("click", (e) => {
@@ -237,8 +247,108 @@ document.getElementById("req-leave-btn").addEventListener("click", (e) => {
     .then(res => res.json())
     .then(data => {
       alert(data.message);
-      // document.getElementById("apply-leave-form").reset();
+      document.getElementById("apply-leave-form").reset();
       // document.getElementById("apply-leave-form").style.display = "none";
     })
-    .catch(err => console.error("Leave submission failed:", err));
+    .catch(err => console.error("Leave submission faile d:", err));
 });
+inbox_menu_btn.addEventListener("click",()=>{
+  schedule_div.style.display = "none";
+  calendarBox.style.display = "none";
+  request_leave_form.style.display = "none";
+  summary_sections.style.display = "none";
+  const inboxSection = document.getElementById("inbox-section");
+  inboxSection.style.display = "block";
+  const requestsContainer = document.getElementById("my-requests");
+  requestsContainer.innerHTML = "";
+
+  fetch("/api/lectures/adjustments/assigned", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: currentUser.email })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (!data.length) {
+        requestsContainer.innerHTML = "<p>No adjustment requests.</p>";
+        return;
+      }
+
+      data.forEach(req => {
+        const card = document.createElement("div");
+        card.className = "adjustment-card";
+  
+
+        card.innerHTML = `
+          <p><strong>Replacement for:</strong> ${req.teacherName}</p>
+          <p><strong>Subject:</strong> ${req.subject}</p>
+          <p><strong>Date:</strong> ${req.date}</p>
+          <p><strong>Time:</strong> ${req.startTime} - ${req.endTime}</p>
+          <button class="accept-btn" data-id="${req._id}">Accept</button>
+          <button class="reject-btn" data-id="${req._id}">Reject</button>
+          <textarea class="rejection-reason"></textarea
+        `;
+
+        const acceptBtn = card.querySelector(".accept-btn");
+        const rejectBtn = card.querySelector(".reject-btn");
+        const reasonInput = card.querySelector(".rejection-reason");
+
+  acceptBtn.onclick = () => {
+  fetch("/api/lectures/adjustments/respond", { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: req._id,
+      action: "accept",
+      teacherEmail: currentUser.email
+    })
+  })
+  .then(res => res.json())
+  .then(response => {
+    alert("Lecture accepted and added to your calendar.");
+    renderTimetable(currentUser.email);
+    if (calendarInitialized) {
+      const calendar = FullCalendar.getCalendar(document.getElementById("calendar"));
+      calendar.refetchEvents();
+    }
+  });
+};
+
+rejectBtn.onclick = () => {
+    const reason = reasonInput.value;
+    if (!reason) {
+      alert("Please provide a reason before rejecting.");
+      return;
+    }
+
+    fetch("/api/lectures/adjustments/respond", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: req._id,
+        action: "reject",
+        reason,
+        teacherEmail: currentUser.email,
+      }),
+    })
+      .then(res => res.json())
+      .then(response => {
+        alert("Lecture rejected. Reason sent to admin.");
+        // card.remove();
+      });
+  };
+        requestsContainer.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error("Failed to load adjustment requests:", err);
+      requestsContainer.innerHTML = "<p>Error loading requests.</p>";
+    });
+})
+dashboard_menu_btn.addEventListener("click",()=>{
+  summary_sections.style.display="block"
+  document.getElementById("schedule").style.display = "none";
+  request_leave_form.style.display="none";
+  calendarBox.style.display="none"
+  inboxSection.style.display="none"
+})

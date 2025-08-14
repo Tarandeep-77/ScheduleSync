@@ -2,19 +2,14 @@ let timetable_form_btn = document.getElementById("timetable-form-btn");
 let schedule_form_div = document.getElementById("schedule-form");
 let schedule_div = document.getElementById("schedule");
 let save_btn = document.getElementById("save-btn");
-
-timetable_form_btn.addEventListener("click", () => {
-  schedule_form_div.style.display = "block";
-  schedule_div.style.display = "none";
-  timetable_form_btn.style.display = "none";
-});
+let calendarMenuBtn = document.getElementById("calendar-menu-btn");
+let calendarBox = document.getElementById("calendar-box");
+let backToTimetableBtn = document.getElementById("back-to-timetable-btn");
+const approveLeaveBtn = document.getElementById("approve-leave-btn");
+const adjustmentSection = document.getElementById("adjustment-section");
+let dashboard_menu_btn = document.getElementById("dashboard-menu-btn")
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
-  // if (user) {
-  //   document.getElementById("admin-name-role").textContent = `${user.name} (${user.role})`;
-  // }
-
 
 fetch("/auth/teachers")
     .then(res => res.json())
@@ -46,7 +41,6 @@ fetch("/auth/teachers")
     });
 });
 
-
 save_btn.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -73,7 +67,7 @@ save_btn.addEventListener("click", (e) => {
     room,
   };
 
-  fetch("/api/lectures", {
+  fetch("/api/lectures/add-lecture", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -94,7 +88,6 @@ save_btn.addEventListener("click", (e) => {
       alert("Something went wrong.");
     });
 });
-
 function fillLectureInTimetable(lecture) {
   const rows = document.querySelectorAll("tbody tr");
 
@@ -136,19 +129,8 @@ function renderTimetable(teacherEmail) {
     .catch(err => {
       console.error("Failed to load timetable:", err);
     });
-}
+  }
 
-
-document.getElementById("teacher-email").addEventListener("change", () => {
-  const selectedEmail = document.getElementById("teacher-email").value;
-  sessionStorage.setItem("selectedTeacherEmail", selectedEmail);
-  renderTimetable(selectedEmail);
-});
-
-
-let calendarMenuBtn = document.getElementById("calendar-menu-btn");
-let calendarBox = document.getElementById("calendar-box");
-let backToTimetableBtn = document.getElementById("back-to-timetable-btn");
 let calendarInitialized = false;
 
 calendarMenuBtn.addEventListener("click", () => {
@@ -188,12 +170,6 @@ calendarMenuBtn.addEventListener("click", () => {
   }
 });
 
-backToTimetableBtn.addEventListener("click", () => {
-  calendarBox.style.display = "none";
-  schedule_div.style.display = "block";
-  timetable_form_btn.style.display = "block";
-});
-
 function getAllLecturesAsEvents() {
   return fetch("/api/lectures/all")
     .then(res => res.json())
@@ -212,19 +188,6 @@ function getAllLecturesAsEvents() {
     });
 }
 
-// setInterval(() => {
-//   fetch("/check-session",{ credentials : 'include'})
-//     .then(res => res.json())
-//     .then(data => {
-//       if (!data.active) {
-//         alert("Session expired. Please login again.");
-//         window.location.href = "/login";
-//       }
-//     })
-//     .catch(err => {
-//       console.error("Session check failed:", err);
-//     });
-// }, 60000); //10 seconds
 
 function updateDateTime() {
   const today = new Date();
@@ -250,19 +213,6 @@ updateDateTime();
 
 setInterval(updateDateTime, 1000);
 
-const approveLeaveBtn = document.getElementById("approve-leave-btn");
-const adjustmentSection = document.getElementById("adjustment-section");
-
-approveLeaveBtn.addEventListener("click", () => {
-  schedule_div.style.display = "none";
-  schedule_form_div.style.display = "none";
-  calendarBox.style.display = "none";
-  timetable_form_btn.style.display = "none";
-
-  adjustmentSection.style.display = "block";
-
-  loadPendingAdjustments();
-});
 
 function loadPendingAdjustments() {
   fetch("/api/lectures/adjustments/pending")
@@ -276,12 +226,12 @@ function loadPendingAdjustments() {
         card.classList.add("adjustment-card");
 
         card.innerHTML = `
-          <p><strong>Teacher:</strong> ${req.teacherName}</p>
           <p><strong>Date:</strong> ${req.date}</p>
-          <p><strong>Subject:</strong> ${req.subject}</p>
-          <p><strong>Room:</strong> ${req.room}</p>
-          <p><strong>Time:</strong> ${req.startTime} - ${req.endTime}</p>
           <p><strong>Reason:</strong> ${req.reason}</p>
+          <p><strong>Teacher:</strong> ${req.teacherName} | 
+          <strong>Subject:</strong> ${req.subject} |
+          <strong>Room:</strong> ${req.room} |
+          <strong>Time:</strong> ${req.startTime} - ${req.endTime}</p>
         `;
 
         const buttonDiv = document.createElement("div");
@@ -298,56 +248,88 @@ function loadPendingAdjustments() {
         buttonDiv.append(assignBtn, resolveBtn);
         card.appendChild(buttonDiv);
         list.appendChild(card);
-
-       
+        
         assignBtn.addEventListener("click", () => {
-          fetch("/api/lectures/available-teachers")
-            .then(res => res.json())
-            .then(freeTeachers => {
-               console.log("Free teachers:", freeTeachers);
-              if (freeTeachers.length === 0) {
-                alert("No available teachers found for this time slot.");
-                return;
-              }
+  fetch("/api/lectures/available-teachers", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ id: req._id })
+  })
+    .then(res => res.json())
+    .then(teachers => {
+      if (!teachers.length) {
+        alert("No available teachers found for this time.");
+        return;
+      }
 
-         
-              if (card.querySelector(".teacher-container")) return;
+      const modalOverlay = document.createElement("div");
+      modalOverlay.className = "modal-overlay";
 
-              const container = document.createElement("div");
-              container.className = "teacher-container";
+  
+      const modalContent = document.createElement("div");
+      modalContent.className = "modal-content";
 
-              const title = document.createElement("h3");
-              title.textContent = "Available Teachers";
-              container.appendChild(title);
 
-              freeTeachers.forEach(t => {
-                const teacherCard = document.createElement("div");
-                teacherCard.className = "teacher-card";
+      const heading = document.createElement("h2");
+      heading.textContent = "Available Teachers";
+      heading.style.marginBottom = "10px";
+      modalContent.appendChild(heading);
 
-                const email = document.createElement("span");
-                email.textContent = t.email;
-                email.className = "teacher-email";
+     
+      teachers.forEach(t => {
+        const teacherRow = document.createElement("div");
+        teacherRow.className = "teacher-row";
 
-                const sendBtn = document.createElement("button");
-                sendBtn.textContent = "Send Request";
-                sendBtn.className = "send-request-btn";
+        const info = document.createElement("span");
+        info.textContent = `${t.email} | Lectures: ${t.lectureCount}`;
 
-                sendBtn.addEventListener("click", () => {
-                  alert(`Request sent to ${t.email}`);
-                });
+        const sendBtn = document.createElement("button");
+        sendBtn.textContent = "Send Request";
+        sendBtn.className = "send-btn";
 
-                teacherCard.appendChild(email);
-                teacherCard.appendChild(sendBtn);
-                container.appendChild(teacherCard);
-              });
+        sendBtn.addEventListener("click", () => {
+  fetch("/api/lectures/adjustments/send-request", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      adjustmentId: req._id,
+      assignedTeacherEmail: t.email
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.message);
+    document.body.removeChild(modalOverlay);
+  })
+  .catch(err => {
+    console.error("Failed to send adjustment request:", err);
+    alert("Failed to send request.");
+  });
+});
 
-              card.appendChild(container);
-            })
-            .catch(err => {
-              console.error("Failed to fetch available teachers:", err);
-              alert("Something went wrong.");
-            });
-        });
+        teacherRow.append(info, sendBtn);
+        modalContent.appendChild(teacherRow);
+      });
+     
+      const closeBtn = document.createElement("button");
+      closeBtn.textContent = "Close";
+      closeBtn.className = "close-modal-btn";
+      closeBtn.addEventListener("click", () => {
+        document.body.removeChild(modalOverlay);
+      });
+      modalContent.appendChild(closeBtn);
+
+      modalOverlay.appendChild(modalContent);
+      document.body.appendChild(modalOverlay);
+    })
+    .catch(err => {
+      console.error("Error fetching available teachers:", err);
+      alert("Something went wrong.");
+    });
+});
+
       });
     });
 }
@@ -367,3 +349,36 @@ function loadPendingAdjustments() {
 //     console.error("Session check failed:", err);
 //     window.location.href = "/login";
 //   })
+
+timetable_form_btn.addEventListener("click", () => {  
+  schedule_form_div.style.display = "block";
+  schedule_div.style.display = "none";
+  timetable_form_btn.style.display = "none";
+});
+document.getElementById("teacher-email").addEventListener("change", () => {
+  const selectedEmail = document.getElementById("teacher-email").value;
+  sessionStorage.setItem("selectedTeacherEmail", selectedEmail);
+  renderTimetable(selectedEmail);
+});
+backToTimetableBtn.addEventListener("click", () => {
+  calendarBox.style.display = "none";
+  schedule_div.style.display = "block";
+  timetable_form_btn.style.display = "block";
+});
+
+approveLeaveBtn.addEventListener("click", () => {
+  schedule_div.style.display = "none";
+  schedule_form_div.style.display = "none";
+  calendarBox.style.display = "none";
+  timetable_form_btn.style.display = "none";
+  adjustmentSection.style.display = "block";
+
+  loadPendingAdjustments();
+});
+
+dashboard_menu_btn.addEventListener("click",()=>{
+  schedule_div.style.display = "block";
+  timetable_form_btn.style.display = "block";
+  calendarBox.style.display="none";
+   adjustmentSection.style.display = "none";
+})

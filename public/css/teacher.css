@@ -136,7 +136,7 @@ th {
 }
 
 #calendar {
-  width: 650px;
+  width: 700px;
   height: 400px;
   margin: 0 auto;
   background-color: white;
@@ -242,4 +242,27 @@ th {
 #req-leave-heading{
   text-align: center;
   color: indigo;
+}
+#my-requests{
+  height: 200px;
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.accept-btn,.reject-btn{
+  height: 40px;
+  width: 74px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+}
+.accept-btn{
+  background-color: green;
+}
+.reject-btn{
+  background-color: rgb(230, 64, 64);
 }

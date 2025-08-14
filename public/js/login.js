@@ -1,4 +1,11 @@
-document.getElementById("form-container").addEventListener("submit", (e) => {
+let forgot_password = document.getElementById("forgot-password");
+let formContainer = document.getElementById("form-container");
+
+let step1 = document.getElementById("forgot-step1");
+let step2 = document.getElementById("forgot-step2");
+let step3 = document.getElementById("forgot-step3");
+
+formContainer.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let emailInput = document.getElementById("email");
@@ -50,4 +57,73 @@ document.getElementById("form-container").addEventListener("submit", (e) => {
 
   emailInput.value = "";
   passwordInput.value = "";
+});
+
+forgot_password.addEventListener("click", () => {
+  formContainer.style.display = "none";
+  step1.style.display = "block";
+});
+
+step1.addEventListener("submit", function(e) {
+  e.preventDefault();
+  let email = document.getElementById("fp-email").value;
+
+  fetch("/auth/forgot-password", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      if (data.message.includes("OTP sent")) {
+        step1.style.display = "none";
+        step2.style.display = "block";
+      }
+    })
+    .catch(err => console.error(err));
+});
+
+step2.addEventListener("submit", function(e) {
+  e.preventDefault();
+  let email = document.getElementById("fp-email-verify").value;
+  let otp = document.getElementById("fp-otp").value;
+
+  fetch("/auth/verify-otp", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, otp })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      if (data.message.includes("verified")) {
+        step2.style.display = "none";
+        step3.style.display = "block";
+      }
+    })
+    .catch(err => console.error(err));
+});
+
+step3.addEventListener("submit", function(e) {
+  e.preventDefault();
+  let email = document.getElementById("fp-email-reset").value;
+  let otp = document.getElementById("fp-otp-reset").value;
+  let newPassword = document.getElementById("fp-newpass").value;
+  let confirmPassword = document.getElementById("fp-confirmpass").value;
+
+  fetch("/auth/reset-password", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, otp, newPassword, confirmPassword })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      if (data.message.includes("successful")) {
+        step3.style.display = "none";
+        formContainer.style.display = "block";
+      }
+    })
+    .catch(err => console.error(err));
 });

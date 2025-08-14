@@ -27,7 +27,7 @@
                 <option value="teacher">Teacher</option>
             </select>
 
-           <p id="forgot-passwd-text"><a href="">Forgot Password?</a></p>
+           <p id="forgot-passwd-text"><a href="#" id="forgot-password">Forgot Password?</a></p>
             <button id="login-btn">Login</button>
             <p id="or-text">or</p>
             <button id="google-btn"><i class="fab fa-google"></i> Continue with Google</button>
@@ -35,6 +35,27 @@
             <p id="signup-link">Don't have an account?<a href="signup">Signup</a></p>
         </form>
 
+        <form id="forgot-step1" style="display:none;">
+        <h2>Forgot Password</h2>
+        <input type="email" id="fp-email" placeholder="Enter your email" required>
+        <button type="submit">Send OTP</button>
+        </form>
+
+        <form id="forgot-step2" style="display:none;">
+        <h2>Verify OTP</h2>
+        <input type="email" id="fp-email-verify" placeholder="Enter your email" required>
+        <input type="text" id="fp-otp" placeholder="Enter OTP" required>
+        <button type="submit">Verify OTP</button>
+        </form>
+
+        <form id="forgot-step3" style="display:none;">
+        <h2>Reset Password</h2>
+        <input type="email" id="fp-email-reset" placeholder="Enter your email" required>
+        <input type="text" id="fp-otp-reset" placeholder="Enter OTP" required>
+        <input type="password" id="fp-newpass" placeholder="New password" required>
+        <input type="password" id="fp-confirmpass" placeholder="Confirm password" required>
+        <button type="submit">Reset Password</button>
+        </form>
     </div>
 
     <script src="./js/login.js"></script>

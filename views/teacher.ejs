@@ -8,17 +8,17 @@
     <title>Teacher Dashboard</title>
 </head>
 <body>
-        <!-- <h2 id="welcome-message"></h2> -->
+
  <%- include("partials/header",{user})%>
 
     <div id="dashboard-container">
 
          <div id="sidebar">
             <ul class="sidebar-menu">
-                <li>Dashboard</li>
+                <li id="dashboard-menu-btn">Dashboard</li>
                 <li id="calendar-menu-btn">Calendar</li>
                 <li id="apply-leave-menu-btn">Apply Leave</li>
-                <li>Inbox</li>
+                <li id="inbox-menu-btn">Inbox</li>
             </ul>
             <div class="sidebar-current-view"><p>Current view</p>
                 <button class="current-view-btn">Meeting</button>
@@ -169,6 +169,11 @@
                 <input type="text" id="reason-input" placeholder="Reason for leave" class="req-form-inputs">
                 <button id="req-leave-btn">Request Leave</button>
             </form>
+        </div>
+
+        <div id="inbox-section" style="display: none;">
+            <h2>Adjustment Requests</h2>
+            <div id="my-requests"></div>
         </div>
 
         </div>
